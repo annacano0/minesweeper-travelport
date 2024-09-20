@@ -5,7 +5,8 @@ interface MockDataFormProps {
 }
 
 export default function MockDataForm ({ setData }:MockDataFormProps) {
-  const [mockData, setMockData] = useState('| * | o |')
+  const [mockData, setMockData] = useState<string>('| * | o |')
+  
   function handleSubmit (e:React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setData(mockData)

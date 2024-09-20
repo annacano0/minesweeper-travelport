@@ -3,6 +3,7 @@ import './styles/cell.css'
 
 import {ReduxState} from '../lib/store';
 import { useSelector } from 'react-redux'
+import {isTaggedType} from '../lib/types/MinefieldTypes'
 
 interface CellProps{
   rowPosition: number, 
@@ -14,7 +15,7 @@ interface CellProps{
 }
 
 export default function Cell ({ rowPosition, colPosition, hasMine, numberOfMinesAround, isCovered, onClick }:CellProps) {
-  const [isTagged, setIsTagged] = useState('')
+  const [isTagged, setIsTagged] = useState<isTaggedType>('')
   const gameStatus = useSelector((state: ReduxState) => state.game?.value);
 
 
@@ -28,7 +29,7 @@ export default function Cell ({ rowPosition, colPosition, hasMine, numberOfMines
   function handleContextMenu (e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
     if (gameStatus === 'playing') {
-      let newState:string = ''
+      let newState:isTaggedType = ''
       if (isTagged === '') {
         newState = 'mined'
       } else if (isTagged === 'mined') {

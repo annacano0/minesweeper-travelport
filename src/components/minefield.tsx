@@ -16,7 +16,7 @@ interface MinefieldProps{
 
 export default function Minefield ({ numberOfRows = 9, numberOfColumns = 9, numberOfMines = 10, mockData }:MinefieldProps) {
   const [minefieldData, setMinefieldData] = useState<MinefieldType>([])
-  const [cellsToUncover, setCellsToUncover] = useState(-1)
+  const [cellsToUncover, setCellsToUncover] = useState<number>(-1)
   
   const gameStatus = useSelector((state:ReduxState):string => state.game?.value)
   const dispatch = useDispatch()
@@ -32,7 +32,7 @@ export default function Minefield ({ numberOfRows = 9, numberOfColumns = 9, numb
     { offsetX: 1, offsetY: 1 }
   ]
 
-  function uncoverNeighborCells (row:number, column:number, newMinefieldData:MinefieldType) {
+  function uncoverNeighborCells (row:number, column:number, newMinefieldData:MinefieldType):number {
     let counter = 0
     const newNumberOfRows = newMinefieldData.length
     const newNumberOfColumns = newMinefieldData[0].length
@@ -53,7 +53,7 @@ export default function Minefield ({ numberOfRows = 9, numberOfColumns = 9, numb
     return counter
   }
 
-  function onClick (row:number, column:number) {
+  function onClick (row:number, column:number):void {
     dispatch(setPlaying())
     const newMinefieldData:MinefieldType = [...minefieldData]
     let uncoveredCells
@@ -76,7 +76,7 @@ export default function Minefield ({ numberOfRows = 9, numberOfColumns = 9, numb
     setMinefieldData(newMinefieldData)
   }
 
-  useEffect(() => {
+  useEffect(():void => {
     let preData:MinefieldType
     if (mockData.includes('|')) {
       mockData = dataHelper.parseMockDataToString(mockData)
@@ -98,9 +98,9 @@ export default function Minefield ({ numberOfRows = 9, numberOfColumns = 9, numb
       <p>Status: {(gameStatus!=undefined) ? gameStatus : 'not available'}</p>
       <div data-testid='mockdata-title'>Mock data: {mockData}</div>
       <div>minefieldData.length:{minefieldData.length}</div>
-      {minefieldData.map((row, rowIndex) => (
+      {minefieldData.map((row:CellType[], rowIndex:number) => (
         <div className='minefield-row' data-testid='minefield-row' key={rowIndex}>
-          {row.map((cell, cellIndex) => (
+          {row.map((cell:CellType, cellIndex:number) => (
             <Cell
               key={cellIndex}
               rowPosition={rowIndex + 1}

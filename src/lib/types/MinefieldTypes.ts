@@ -7,3 +7,8 @@ export type CellType = {
   }
 
 export type MinefieldType = CellType[][]
+
+export type isTaggedType = 
+    | '' 
+    | 'mined'
+    | 'inconclusive'

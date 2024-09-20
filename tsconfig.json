@@ -117,7 +117,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/lib/slices/gameStatus.js"  ],
+, "src/app/page.js", "tests/steps/minesweeper.steps.js"  ],
   "exclude": [
     "node_modules"
   ]

@@ -4,7 +4,7 @@ import Minefield from './minefield'
 import MockDataForm from './mockDataForm'
 
 export default function Game () {
-  const [mockDataFormVisible, setMockDataFormVisible] = useState(false)
+  const [mockDataFormVisible, setMockDataFormVisible] = useState<boolean>(false)
   const [mockData, setMockData] = useState<string>('')
 
   useEffect(() => {
@@ -16,12 +16,12 @@ export default function Game () {
     }
   }, [])
 
-  function setMockDataForm (data:string) {
+  function setMockDataForm (data:string):void {
     setMockData(data)
     setMockDataFormVisible(false)
   }
 
-  function handleKeyPress (e: KeyboardEvent) {
+  function handleKeyPress (e: KeyboardEvent):void {
     if (e.ctrlKey && e.key.toUpperCase() === 'M') {
       setMockDataFormVisible(!mockDataFormVisible)
     }
