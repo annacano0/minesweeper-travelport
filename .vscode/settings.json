@@ -1,0 +1,29 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#ff919d",
+    "activityBar.background": "#ff919d",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#e3ffdf",
+    "activityBarBadge.foreground": "#15202b",
+    "commandCenter.border": "#15202b99",
+    "sash.hoverBorder": "#ff919d",
+    "statusBar.background": "#ff5e6f",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#ff2b41",
+    "statusBarItem.remoteBackground": "#ff5e6f",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#ff5e6f",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#ff5e6f99",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.color": "#ff5e6f",
+  "standard.options": {
+    "env" : ["jest"]
+  },
+  "cucumberautocomplete.syncfeatures": "tests/**/*.feature",
+  "cucumberautocomplete.steps": [
+    "tests/**/*.js"
+  ],
+}

@@ -1,0 +1,30 @@
+{
+  "name": "minesweeper-2024",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "standard --fix --env jest",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.7",
+    "next": "14.2.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-redux": "^9.1.2"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.3.2",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
+    "jest": "^29.7.0",
+    "jest-cucumber": "^4.4.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "standard": "^17.1.0"
+  }
+}

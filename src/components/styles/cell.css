@@ -1,0 +1,14 @@
+.minefield-cell {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 16px;
+  height: 16px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.covered {
+  background-image: url('../../../public/tiles/hiddenCell.png');
+  border: none;
+}
