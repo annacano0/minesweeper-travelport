@@ -5,7 +5,7 @@ import MockDataForm from './mockDataForm'
 
 export default function Game () {
   const [mockDataFormVisible, setMockDataFormVisible] = useState(false)
-  const [mockData, setMockData] = useState('')
+  const [mockData, setMockData] = useState<string>('')
 
   useEffect(() => {
     console.log('useEffect') // TODO Is the best way to do in React?
@@ -16,12 +16,12 @@ export default function Game () {
     }
   }, [])
 
-  function setMockDataForm (data) {
+  function setMockDataForm (data:string) {
     setMockData(data)
     setMockDataFormVisible(false)
   }
 
-  function handleKeyPress (e) {
+  function handleKeyPress (e: KeyboardEvent) {
     if (e.ctrlKey && e.key.toUpperCase() === 'M') {
       setMockDataFormVisible(!mockDataFormVisible)
     }
@@ -30,7 +30,7 @@ export default function Game () {
     <div>
       <h1>Minesweeper</h1>
       {mockDataFormVisible && <MockDataForm setData={setMockDataForm} />}
-      <Minefield mockData={mockData} />
+      <Minefield  numberOfRows = {9} numberOfColumns = {9} numberOfMines = {10} mockData={mockData} />
     </div>
   )
 }
