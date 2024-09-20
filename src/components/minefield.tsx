@@ -5,6 +5,7 @@ import Cell from './cell'
 import {ReduxState} from '../lib/store';
 import { useSelector, useDispatch } from 'react-redux'
 import { loseGame, winGame, setPlaying } from '../lib/slices/gameStatus'
+import {CellType, MinefieldType} from '../lib/types/MinefieldTypes'
 
 interface MinefieldProps{
   numberOfRows:number,
@@ -12,16 +13,6 @@ interface MinefieldProps{
   numberOfMines:number,
   mockData:string;
 }
-
-type CellType = {
-  x: number;
-  y: number;
-  isMine: boolean;
-  isCovered: boolean; 
-  numberOfMinesAround: number;
-}
-
-type MinefieldType = CellType[][]
 
 export default function Minefield ({ numberOfRows = 9, numberOfColumns = 9, numberOfMines = 10, mockData }:MinefieldProps) {
   const [minefieldData, setMinefieldData] = useState<MinefieldType>([])

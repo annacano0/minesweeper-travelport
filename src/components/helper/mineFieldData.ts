@@ -1,8 +1,12 @@
-export function validateMockData (mockData) {
+import {CellType} from '../../lib/types/MinefieldTypes'
+import {MinefieldType} from '../../lib/types/MinefieldTypes'
+
+
+export function validateMockData (mockData:string):boolean | undefined {//TODO: change this so that it cant return undefined
   if (mockData === '') {
     return false
   } else {
-    let isValidData
+    let isValidData:boolean | undefined
     if (mockData === undefined) {
       isValidData = false
     } else {
@@ -16,13 +20,13 @@ export function validateMockData (mockData) {
   }
 }
 
-function validateMockDataRow (data) {
+function validateMockDataRow (data:string):boolean {
   const newLocal = '^[*o]*$'
   const regex = new RegExp(newLocal)
   return regex.test(data)
 }
 
-function validateMockDataRows (dataRows) {
+function validateMockDataRows (dataRows:string[]):boolean | undefined{
   const currentLenght = dataRows[0].length
   let isValidData
   for (let i = 0; i < dataRows.length; i += 1) {
@@ -35,7 +39,7 @@ function validateMockDataRows (dataRows) {
   return isValidData
 }
 
-export function parseMockDataToString (data) {
+export function parseMockDataToString (data:string):string {
   let strData = data.split(/\r?\n/).join('-')
   strData = strData.replaceAll(' ', '')
   strData = strData.replaceAll('|', '')
@@ -45,10 +49,10 @@ export function parseMockDataToString (data) {
   return strData
 }
 
-export function getMinefieldFromMockData (mockData) {
-  const board = []
-  let mockBoard = mockData.split('-')
-  mockBoard = mockBoard.map((row) => { return row.split('') })
+export function getMinefieldFromMockData (mockData:string):CellType[][] {
+  const board:MinefieldType = []
+  let mockBoardRows:string[] = mockData.split('-')
+  let mockBoard:string[][] = mockBoardRows.map((row) => { return row.split('') })
   for (let row = 0; row < mockBoard.length; row += 1) {
     board.push([])
     for (let column = 0; column < mockBoard[0].length; column += 1) {
@@ -64,7 +68,7 @@ export function getMinefieldFromMockData (mockData) {
   return board
 }
 
-export function getNumberOfCellsToUncover (data) {
+export function getNumberOfCellsToUncover (data:MinefieldType) {
   let cells = 0
   for (let row = 0; row < data.length; row += 1) {
     for (let column = 0; column < data[0].length; column += 1) {
@@ -74,8 +78,8 @@ export function getNumberOfCellsToUncover (data) {
   return cells
 }
 
-export function getMinefield (numberOfRows, numberOfColumns) {
-  const minefieldData = []
+export function getMinefield (numberOfRows:number, numberOfColumns:number):MinefieldType {
+  const minefieldData:MinefieldType = []
   for (let row = 0; row < numberOfRows; row += 1) {
     minefieldData.push([])
     for (let column = 0; column < numberOfColumns; column += 1) {
@@ -91,7 +95,7 @@ export function getMinefield (numberOfRows, numberOfColumns) {
   return minefieldData
 }
 
-export function minefieldMining (board, amount) {
+export function minefieldMining (board:MinefieldType, amount:number):void {
   const NUMBER_OF_ROWS = board.length
   const NUMBER_OF_COLUMNS = board[0].length
   let mines = 0
@@ -105,7 +109,7 @@ export function minefieldMining (board, amount) {
   }
 }
 
-export function minefieldNumbering (board) {
+export function minefieldNumbering (board:MinefieldType):void {
   const NUMBER_OF_ROWS = board.length
   const NUMBER_OF_COLUMNS = board[0].length
   for (let row = 0; row < NUMBER_OF_ROWS; row += 1) {
