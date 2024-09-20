@@ -117,7 +117,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/lib/slices/gameStatus.js"  ],
   "exclude": [
     "node_modules"
   ]

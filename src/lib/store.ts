@@ -8,3 +8,5 @@ export const makeStore = () => {
     }
   })
 }
+const store = makeStore();
+export type ReduxState = ReturnType<typeof store.getState>;

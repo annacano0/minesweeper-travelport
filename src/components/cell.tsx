@@ -1,24 +1,34 @@
 import { useState } from 'react'
 import './styles/cell.css'
 
+import {ReduxState} from '../lib/store';
 import { useSelector } from 'react-redux'
 
-export default function Cell ({ rowPosition, colPosition, hasMine, numberOfMinesAround, isCovered, onClick }) {
+interface CellProps{
+  rowPosition: string, 
+  colPosition: string,
+  hasMine: boolean, 
+  numberOfMinesAround:number,
+  isCovered: boolean, 
+  onClick: ( rowPosition: string, colPosition: string) => void
+}
+
+export default function Cell ({ rowPosition, colPosition, hasMine, numberOfMinesAround, isCovered, onClick }:CellProps) {
   const [isTagged, setIsTagged] = useState('')
-  const gameStatus = useSelector((state) => state.game?.value)
+  const gameStatus = useSelector((state: ReduxState) => state.game?.value);
 
 
-  function handleClick (e) {
+  function handleClick (e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
     if (!isTagged) {
       onClick(rowPosition, colPosition)
     }
   }
 
-  function handleContextMenu (e) {
+  function handleContextMenu (e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
     if (gameStatus === 'playing') {
-      let newState = ''
+      let newState:string = ''
       if (isTagged === '') {
         newState = 'mined'
       } else if (isTagged === 'mined') {
@@ -30,7 +40,7 @@ export default function Cell ({ rowPosition, colPosition, hasMine, numberOfMines
     }
   }
 
-  function getUncoveredCell () {
+  function getUncoveredCell (){
     return (
       <div
         data-testid={`minefield-cell cell-row${rowPosition}-col${colPosition}`}
@@ -42,8 +52,8 @@ export default function Cell ({ rowPosition, colPosition, hasMine, numberOfMines
   }
 
   function getUncoveredCellImage () {
-    let imgSource
-    let altText
+    let imgSource: string
+    let altText: string
     if (hasMine) {
       if (isCovered) {
         imgSource = '/tiles/bombCell.png'
