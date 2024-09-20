@@ -5,12 +5,12 @@ import {ReduxState} from '../lib/store';
 import { useSelector } from 'react-redux'
 
 interface CellProps{
-  rowPosition: string, 
-  colPosition: string,
+  rowPosition: number, 
+  colPosition: number,
   hasMine: boolean, 
   numberOfMinesAround:number,
   isCovered: boolean, 
-  onClick: ( rowPosition: string, colPosition: string) => void
+  onClick: ( rowPosition: number, colPosition: number) => void
 }
 
 export default function Cell ({ rowPosition, colPosition, hasMine, numberOfMinesAround, isCovered, onClick }:CellProps) {

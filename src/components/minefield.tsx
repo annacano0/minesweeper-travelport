@@ -2,15 +2,32 @@ import { useState, useEffect } from 'react'
 import * as dataHelper from './helper/mineFieldData'
 import './styles/minefield.css'
 import Cell from './cell'
-
+import {ReduxState} from '../lib/store';
 import { useSelector, useDispatch } from 'react-redux'
 import { loseGame, winGame, setPlaying } from '../lib/slices/gameStatus'
 
-export default function Minefield ({ numberOfRows = 9, numberOfColumns = 9, numberOfMines = 10, mockData }) {
-  const [minefieldData, setMinefieldData] = useState([])
+interface MinefieldProps{
+  numberOfRows:number,
+  numberOfColumns:number,
+  numberOfMines:number,
+  mockData:string;
+}
+
+type CellType = {
+  x: number;
+  y: number;
+  isMine: boolean;
+  isCovered: boolean; 
+  numberOfMinesAround: number;
+}
+
+type MinefieldType = CellType[][]
+
+export default function Minefield ({ numberOfRows = 9, numberOfColumns = 9, numberOfMines = 10, mockData }:MinefieldProps) {
+  const [minefieldData, setMinefieldData] = useState<MinefieldType>([])
   const [cellsToUncover, setCellsToUncover] = useState(-1)
   
-  const gameStatus = useSelector((state) => state.game?.value)
+  const gameStatus = useSelector((state:ReduxState):string => state.game?.value)
   const dispatch = useDispatch()
 
   const directions = [
@@ -24,7 +41,7 @@ export default function Minefield ({ numberOfRows = 9, numberOfColumns = 9, numb
     { offsetX: 1, offsetY: 1 }
   ]
 
-  function uncoverNeighborCells (row, column, newMinefieldData) {
+  function uncoverNeighborCells (row:number, column:number, newMinefieldData:MinefieldType) {
     let counter = 0
     const newNumberOfRows = newMinefieldData.length
     const newNumberOfColumns = newMinefieldData[0].length
@@ -45,9 +62,9 @@ export default function Minefield ({ numberOfRows = 9, numberOfColumns = 9, numb
     return counter
   }
 
-  function onClick (row, column) {
+  function onClick (row:number, column:number) {
     dispatch(setPlaying())
-    const newMinefieldData = [...minefieldData]
+    const newMinefieldData:MinefieldType = [...minefieldData]
     let uncoveredCells
     if (newMinefieldData[row - 1][column - 1].isCovered === true) {
       newMinefieldData[row - 1][column - 1].isCovered = false
@@ -69,7 +86,7 @@ export default function Minefield ({ numberOfRows = 9, numberOfColumns = 9, numb
   }
 
   useEffect(() => {
-    let preData
+    let preData:MinefieldType
     if (mockData.includes('|')) {
       mockData = dataHelper.parseMockDataToString(mockData)
     }
