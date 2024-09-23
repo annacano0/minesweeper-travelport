@@ -16,7 +16,7 @@ interface CellProps{
 
 export default function Cell ({ rowPosition, colPosition, hasMine, numberOfMinesAround, isCovered, onClick }:CellProps) {
   const [isTagged, setIsTagged] = useState<isTaggedType>('')
-  const gameStatus = useSelector((state: ReduxState) => state.game?.value);
+  const gameStatus = useSelector((state: ReduxState) => state.game.value);
 
 
   function handleClick (e: React.MouseEvent<HTMLButtonElement>) {

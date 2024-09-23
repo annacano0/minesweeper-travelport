@@ -18,7 +18,7 @@ export default function Minefield ({ numberOfRows = 9, numberOfColumns = 9, numb
   const [minefieldData, setMinefieldData] = useState<MinefieldType>([])
   const [cellsToUncover, setCellsToUncover] = useState<number>(-1)
   
-  const gameStatus = useSelector((state:ReduxState):string => state.game?.value)
+  const gameStatus = useSelector((state:ReduxState):string => state.game.value)
   const dispatch = useDispatch()
 
   const directions = [
