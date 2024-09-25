@@ -163,7 +163,7 @@ defineFeature(feature, (test) => {
     })
   })
 
-  test('Untagging an cell, mouse right click over an inconclusive cell, removing the cell tag', ({ given, when, then, and }) => {
+  test('Untagging an cell, mouse right click over an inconclusive cell, removing the cell tag', ({ given, when, then }) => {
     given('the player opens the game', () => {
       steps.openTheGame()
     })
@@ -304,7 +304,7 @@ defineFeature(feature, (test) => {
     })
   })
 
-  test('A non empty cell uncovered by a neighbor cell - Not uncovering its neighbor cells', ({ given, when, then, and, pending }) => {
+  test('A non empty cell uncovered by a neighbor cell - Not uncovering its neighbor cells', ({ given, when, then, and }) => {
     given('the player opens the game', () => {
       steps.openTheGame()
     })
@@ -322,7 +322,7 @@ defineFeature(feature, (test) => {
     })
   })
 
-  test('An empty cell uncovered by a neighbor cell - Uncovering its neighbor cells', ({ given, when, then, and, pending }) => {
+  test('An empty cell uncovered by a neighbor cell - Uncovering its neighbor cells', ({ given, when, then, and }) => {
     given('the player opens the game', () => {
       steps.openTheGame()
     })
